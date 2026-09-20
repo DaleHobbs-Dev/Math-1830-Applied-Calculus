@@ -1,0 +1,764 @@
+/* ------------------------------------------------------------------
+      DESIGN TOKENS (CSS Custom Properties)
+      Adjust these to match brand. Colors align with school palette:
+      - Emerald: #00b052, Forest: #144d29, Navy: #002b5e
+    ------------------------------------------------------------------ */
+:root {
+  /* Brand Colors */
+  --color-brand-emerald: #00b052;
+  --color-brand-forest: #144d29;
+  --color-brand-navy: #002b5e;
+
+  /* Neutrals */
+  --color-bg-body: #ffffff;
+  /* D2L white background */
+  --color-bg-page: #f8f9f6;
+  /* off‑white “paper” */
+  --color-bg-gloss: rgba(255, 255, 255, 0.6);
+  --color-text: #0f172a;
+  /* slate‑900 */
+  --color-muted: #475569;
+  /* slate‑600 */
+  --color-border: #d3d6db;
+  /* subtle border */
+  --color-code-bg: #f3f4f6;
+  /* code block bg */
+
+  /* Accents */
+  --color-accent: var(--color-brand-emerald);
+  --color-accent-strong: #019545;
+  /* slightly darker for contrast */
+  --color-heading: var(--color-brand-navy);
+  --color-subheading: #9d2235;
+  /* optional accent from legacy */
+
+  /* Adjusted to improve link contrast for accessibility */
+  --color-link: #016b37; /* darker green for normal state */
+  --color-link-hover: #004e28; /* even darker for hover/focus */
+
+  /* Typography */
+  --font-sans: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+  --leading: 1.6;
+
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+
+  /* Radius & Shadow */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --shadow-page: 0 8px 30px rgba(0, 0, 0, 0.08);
+  --shadow-inset: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+
+  /* Layout */
+  --content-max: 60rem;
+}
+
+/* ------------------------------------------------------------------
+      BASE / RESET
+    ------------------------------------------------------------------ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  hanging-punctuation: first last;
+}
+
+body {
+  margin: var(--space-4);
+  background: var(--color-bg-body);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  line-height: var(--leading);
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------
+      LAYOUT: Page shell that looks like paper on a white D2L background
+    ------------------------------------------------------------------ */
+/* Torn paper look for the main content area */
+.page {
+  max-width: var(--content-max);
+  margin-inline: auto;
+  background-color: #fdf7e6;
+  /* light beige paper color */
+  background-image: linear-gradient(
+    180deg,
+    var(--color-bg-gloss) 0 80px,
+    transparent 120px
+  );
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  /* no rounded corners to fit the torn look */
+  box-shadow: var(--shadow-page);
+  position: relative;
+  padding: 0;
+  /* we'll add padding inside .page__inner */
+  overflow: hidden;
+}
+
+.page__inner {
+  padding: clamp(1rem, 2vw + 0.5rem, 2rem);
+  position: relative;
+  /* keep z-index above torn edges */
+  z-index: 1;
+}
+
+.page__header {
+  margin-bottom: var(--space-6);
+}
+
+.page__title {
+  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.5rem);
+  color: var(--color-heading);
+  font-weight: 700;
+  border-bottom: 3px solid var(--color-accent);
+  padding-bottom: var(--space-2);
+}
+
+.page__subtitle {
+  color: var(--color-muted);
+  margin: 0 0 var(--space-4);
+}
+
+/* Sections / Articles */
+.section {
+  margin-block: var(--space-8);
+}
+
+.section__title {
+  color: var(--color-heading);
+  margin: 0 0 var(--space-3);
+  font-size: 1.5rem;
+}
+
+.section__warning {
+  background-color: #fff3cd; /* warm yellow background */
+  color: #5c3d00; /* deep brown for high contrast */
+  border-left: 6px solid #ffcc00;
+  padding: 1em;
+  border-radius: 6px;
+  margin: 1.5em 0;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.section__warning strong {
+  color: #3b2200; /* even darker for emphasis */
+}
+.section__warning em {
+  color: #4a3000; /* slightly darker italic text */
+}
+
+.article {
+  margin-block: var(--space-6);
+}
+
+.article__title {
+  color: var(--color-subheading);
+  font-size: 1.25rem;
+  margin: 0 0 var(--space-2);
+}
+
+/* ------------------------------------------------------------------
+      UTILITIES
+    ------------------------------------------------------------------ */
+.u-muted {
+  color: var(--color-muted);
+}
+
+.u-sr-only {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.u-center {
+  margin-inline: auto;
+}
+
+.u-stack > * + * {
+  margin-top: var(--space-3);
+}
+
+.u-inline-code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--color-code-bg);
+  padding: 0 0.25em;
+  border-radius: var(--radius-sm);
+}
+
+.u-page-break {
+  break-before: page;
+  page-break-before: always;
+}
+
+/* Print tweaks */
+@media print {
+  body {
+    background: #fff;
+    margin: 0;
+  }
+
+  .page {
+    box-shadow: none;
+    border: none;
+    background: #fff;
+  }
+
+  .u-page-break {
+    break-before: page;
+  }
+}
+
+/* ------------------------------------------------------------------
+      BUTTONS
+    ------------------------------------------------------------------ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn:hover {
+  filter: brightness(0.98);
+}
+
+.btn--primary {
+  background: var(--color-accent);
+  color: #fff;
+  border-color: transparent;
+}
+
+.btn--ghost {
+  background: transparent;
+}
+
+.print-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3);
+}
+
+.print-controls label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+@media print {
+  .dontprint,
+  #readspeaker_button_1,
+  body:not(.print-include-solutions) .solution,
+  body:not(.print-include-answers) .answer {
+    display: none !important;
+  }
+
+  .page-break {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  .blanked {
+    font-family: monospace;
+    letter-spacing: 0.05em;
+    color: black;
+    border-bottom: none;
+    height: auto;
+    min-width: unset;
+  }
+}
+
+/* ------------------------------------------------------------------
+      CODE BLOCKS
+    ------------------------------------------------------------------ */
+.code-block {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  background: var(--color-code-bg);
+  font-size: 0.9rem;
+  padding: var(--space-3);
+  border-left: 4px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  overflow: visible;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* ------------------------------------------------------------------
+      CALLOUTS (BEM) + legacy class mapping
+      Blocks: .callout, Modifiers: --definition | --theorem | --proof | --note | --warning | --important | --solution | --answer
+      Legacy aliases remain (.definition, .theorem, .proof, .note, .warning, .important)
+    ------------------------------------------------------------------ */
+.callout,
+.answer {
+  padding: var(--space-3);
+  margin-block: var(--space-4);
+  background: #fff;
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.callout__title,
+.answer__title {
+  font-weight: 700;
+  margin: 0 0 var(--space-2);
+}
+
+.callout--definition {
+  border-color: var(--color-accent);
+}
+
+.callout--theorem {
+  border-color: var(--color-brand-navy);
+}
+
+.callout--proof {
+  border-color: #6b7280;
+}
+
+.callout--note,
+.answer {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.answer__header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+}
+
+.answer__body {
+  display: flow-root;
+}
+
+.callout--warning {
+  border-color: #b45309;
+  background: #fffbeb;
+}
+
+.callout--important {
+  border-color: var(--color-brand-forest);
+}
+
+/* Worked steps: pale blue. Final answers: pale green.
+   Keep the shared callout shape, spacing, and dark body text. */
+.callout--solution {
+  border-color: var(--color-brand-navy);
+  background: #eef4ff;
+}
+
+.callout--solution .callout__title {
+  color: var(--color-brand-navy);
+}
+
+.callout--answer {
+  border-color: var(--color-brand-forest);
+  background: #edf8ef;
+}
+
+.callout--answer .callout__title {
+  color: var(--color-brand-forest);
+}
+
+/* Legacy aliases (kept for compatibility with existing content) */
+.definition {
+  border: 2px solid var(--color-accent);
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  background: #fff;
+}
+
+.theorem,
+.proof,
+.note,
+.warning,
+.important {
+  background: #fff;
+  padding: var(--space-3);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-4);
+  border: 2px solid var(--color-border);
+}
+
+.theorem {
+  border-color: var(--color-brand-navy);
+}
+
+.proof {
+  border-color: #6b7280;
+}
+
+.note {
+  border-color: #94a3b8;
+  background: #f8fafc;
+}
+
+.warning {
+  border-color: #b45309;
+  background: #fffbeb;
+}
+
+.important {
+  border-color: var(--color-brand-forest);
+}
+
+.badge--warning {
+  background-color: #fff3cd;
+  color: #5c3d00;
+  font-weight: bold;
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+/* ------------------------------------------------------------------
+      EXAMPLES & SOLUTIONS (Blocks maintained as requested)
+      Blocks: .example, .solution; Elements: __header, __label, __body
+    ------------------------------------------------------------------ */
+.example,
+.solution {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  margin-block: var(--space-4);
+}
+
+.example__header,
+.solution__header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 var(--space-2);
+}
+
+.example__label,
+.solution__label {
+  font-style: italic;
+}
+
+.example__number {
+  font-weight: 700;
+}
+
+/* Worked solutions use the same header/body structure as answers. */
+.solution {
+  border: 2px solid #6b7280;
+}
+
+.solution__title {
+  font-weight: 700;
+  margin: 0;
+}
+
+.solution__body {
+  display: flow-root;
+}
+
+/* Table styling */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: #fff;
+}
+
+caption {
+  caption-side: top;
+  text-align: center;
+  font-weight: 700;
+  color: var(--color-heading);
+  padding: var(--space-2) 0;
+}
+
+th,
+td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.6rem;
+}
+
+th {
+  text-align: center;
+  background-color: var(--color-accent);
+  color: var(--color-heading);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Blanked input lines */
+.blanked {
+  border-bottom: 1px solid currentColor;
+  display: inline-block;
+  min-width: 4rem;
+  height: 1.2em;
+}
+
+/* Accessibility: reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Contact List for D2L */
+.contact-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-4);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.contact-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 0.6rem 0.75rem;
+}
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem; /* optically align with label text */
+  color: var(--color-heading);
+}
+.contact-icon svg {
+  width: 1.1em;
+  height: 1.1em;
+  display: block;
+}
+.contact-label {
+  font-weight: 700;
+  color: var(--color-subheading);
+}
+.contact-value {
+  grid-column: 2;
+  margin: 0;
+}
+
+/* Editor-friendly placeholders for template fields */
+.placeholder {
+  color: var(--color-muted);
+  border-bottom: 2px dashed var(--color-border);
+  font-style: italic;
+}
+@media print {
+  .placeholder {
+    border-bottom: 0;
+    font-style: normal;
+  }
+}
+
+/* --------------------------------------------------------------
+   TBR Charger Core Competencies (media layout)
+-------------------------------------------------------------- */
+.competencies {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.competency {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: var(--space-4);
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+}
+
+.competency__icon {
+  width: clamp(72px, 12vw, 125px);
+  height: clamp(72px, 12vw, 125px);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.competency__icon img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.competency__title {
+  font-size: 1.25rem; /* larger h3 */
+  line-height: 1.3;
+  color: var(--color-heading);
+  margin: 0 0 var(--space-2);
+}
+
+.competency__desc {
+  margin: 0;
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------------
+      ADDITIONAL UTILITIES
+    ------------------------------------------------------------------ */
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.u-list-none {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Margin utilities */
+.u-mt-0 {
+  margin-top: 0 !important;
+}
+.u-mb-0 {
+  margin-bottom: 0 !important;
+}
+.u-ml-0 {
+  margin-left: 0 !important;
+}
+.u-mr-0 {
+  margin-right: 0 !important;
+}
+.u-m-0 {
+  margin: 0 !important;
+}
+
+.u-mt-2 {
+  margin-top: var(--space-2);
+}
+.u-mb-2 {
+  margin-bottom: var(--space-2);
+}
+.u-mt-4 {
+  margin-top: var(--space-4);
+}
+.u-mb-4 {
+  margin-bottom: var(--space-4);
+}
+.u-mt-6 {
+  margin-top: var(--space-6);
+}
+.u-mb-6 {
+  margin-bottom: var(--space-6);
+}
+
+/* Padding utilities */
+.u-p-0 {
+  padding: 0 !important;
+}
+.u-pt-2 {
+  padding-top: var(--space-2);
+}
+.u-pb-2 {
+  padding-bottom: var(--space-2);
+}
+.u-pt-4 {
+  padding-top: var(--space-4);
+}
+.u-pb-4 {
+  padding-bottom: var(--space-4);
+}
+
+/* Display utilities */
+.u-block {
+  display: block;
+}
+.u-inline-block {
+  display: inline-block;
+}
+.u-hidden {
+  display: none;
+}
+
+/* Font weight */
+.u-bold {
+  font-weight: 700;
+}
+.u-normal {
+  font-weight: 400;
+}
+
+/* Font style */
+.u-italic {
+  font-style: italic;
+}
+
+/* Width utilities */
+.u-full-width {
+  width: 100%;
+}
+.u-auto-width {
+  width: auto;
+}
+
+/* Stack on very small screens */
+@media (max-width: 520px) {
+  .competency {
+    grid-template-columns: 1fr;
+  }
+  .competency__icon {
+    margin-inline: auto;
+  }
+}

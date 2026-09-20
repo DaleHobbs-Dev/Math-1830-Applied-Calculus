@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>D2L Content Template — BEM + Accessible</title>
+
+    <!-- Google Font (optional) -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="../shared/css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <main class="page" id="main">
+        <div class="page__inner">
+            <header class="page__header">
+                <h1 class="page__title">Instructor Information</h1>
+            </header>
+
+            <!-- Temporary, component-scoped styles to demo the 2‑column layout + icons -->
+            <style>
+                .contact-list {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: var(--space-4);
+                }
+
+                @media (min-width: 700px) {
+                    .contact-list {
+                        grid-template-columns: 1fr 1fr;
+                    }
+                }
+
+                .contact-list__item dt {
+                    display: flex;
+                    align-items: center;
+                    gap: .5rem;
+                    font-weight: 700;
+                    color: var(--color-subheading);
+                    margin: 0 0 .25rem;
+                }
+
+                .contact-list__item dd {
+                    margin: 0;
+                }
+
+                .contact-list__icon {
+                    inline-size: 1.05em;
+                    block-size: 1.05em;
+                    flex: 0 0 auto;
+                    color: var(--color-heading);
+                }
+            </style>
+
+            <section class="section" aria-labelledby="s-contact">
+                <h2 id="s-contact" class="section__title">Contact</h2>
+
+                <dl class="contact-list" aria-label="Instructor contact details">
+                    <!-- Name -->
+                    <div class="contact-list__item">
+                        <dt>
+                            <span class="contact-list__icon" aria-hidden="true">
+                                <!-- user icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M20 21a8 8 0 0 0-16 0" />
+                                    <circle cx="12" cy="7" r="4" />
+                                </svg>
+                            </span>
+                            Instructor Name
+                        </dt>
+                        <dd>###########</dd>
+                    </div>
+
+                    <!-- Phone -->
+                    <div class="contact-list__item">
+                        <dt>
+                            <span class="contact-list__icon" aria-hidden="true">
+                                <!-- phone icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07
+                           19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4.06 2h3
+                           a2 2 0 0 1 2 1.72c.12.9.32 1.77.59 2.6a2 2 0 0 1-.45 2.11L8.09 9.91a16
+                           16 0 0 0 6 6l1.48-1.11a2 2 0 0 1 2.11-.45c.83.27 1.7.47 2.6.59A2 2 0 0 1 22 16.92z" />
+                                </svg>
+                            </span>
+                            Office Phone
+                        </dt>
+                        <dd>(###) ### - ####</dd>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="contact-list__item">
+                        <dt>
+                            <span class="contact-list__icon" aria-hidden="true">
+                                <!-- map-pin icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M21 10c0 7-9 12-9 12S3 17 3 10a9 9 0 1 1 18 0z" />
+                                    <circle cx="12" cy="10" r="3" />
+                                </svg>
+                            </span>
+                            Office Location
+                        </dt>
+                        <dd>#####</dd>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-list__item">
+                        <dt>
+                            <span class="contact-list__icon" aria-hidden="true">
+                                <!-- mail icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="M4 4h16v16H4z" />
+                                    <path d="m22 6-10 7L2 6" />
+                                </svg>
+                            </span>
+                            Email
+                        </dt>
+                        <dd>#####@######.edu</dd>
+                    </div>
+
+                    <!-- Emergency preference -->
+                    <div class="contact-list__item">
+                        <dt>
+                            <span class="contact-list__icon" aria-hidden="true">
+                                <!-- alert-triangle icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path
+                                        d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+                                    <line x1="12" y1="9" x2="12" y2="13" />
+                                    <line x1="12" y1="17" x2="12.01" y2="17" />
+                                </svg>
+                            </span>
+                            Emergency Contact Preference
+                        </dt>
+                        <dd>######</dd>
+                    </div>
+                </dl>
+            </section>
+
+            <section class="section" aria-labelledby="s-hours">
+                <h2 id="s-hours" class="section__title">Office Hours</h2>
+                <div class="callout callout--important" aria-labelledby="hours-title">
+                    <p id="hours-title" class="callout__title">How and when to reach me</p>
+                    <ul>
+                        <li><strong>On‑campus:</strong> #### (building/room) — #### (days) — #### (times)</li>
+                        <li><strong>Virtual:</strong> #### (Zoom/Teams link) — #### (days) — #### (times)</li>
+                        <li><strong>Appointments:</strong> #### (how to book; e.g., Calendly or email)</li>
+                        <li><strong>Typical response time:</strong> #### (e.g., within 24 hours on weekdays)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="section" aria-labelledby="s-about">
+                <h2 id="s-about" class="section__title">About Me</h2>
+                <article class="article u-stack" aria-labelledby="a-about">
+                    <h3 id="a-about" class="u-sr-only">Instructor bio</h3>
+                    <p><strong>***</strong> Enter your personal information here that you want students to know about
+                        you <strong>***</strong></p>
+                    <p class="u-muted">Example prompts (delete after editing): teaching interests, office hours style,
+                        how you prefer students to reach you, and typical response time.</p>
+                </article>
+            </section>
+
+            <section class="section" aria-labelledby="s-closing">
+                <h2 id="s-closing" class="u-sr-only">Closing</h2>
+                <p>Please feel free to email or contact me about anything you are having trouble with in this course. I
+                    look forward to a great semester!</p>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
