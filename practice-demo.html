@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Practice Engine Demo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet" />
+    <link href="./shared/css/style.css" rel="stylesheet" />
+    <link href="./shared/css/practice.css" rel="stylesheet" />
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [["$", "$"], ["\\(", "\\)"]],
+                displayMath: [["$$", "$$"], ["\\[", "\\]"]],
+                processEscapes: true
+            }
+        };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script type="module" src="./shared/js/practice.js"></script>
+</head>
+
+<body>
+    <main class="page" id="main">
+        <div class="page__inner">
+            <header class="page__header">
+                <h1 class="page__title">Practice Engine Demo</h1>
+                <p class="page__subtitle">Randomized, ungraded practice with immediate feedback.</p>
+            </header>
+
+            <section class="section" aria-labelledby="power-rule-practice">
+                <h2 id="power-rule-practice" class="section__title">The Power Rule</h2>
+                <p>Use the power rule to differentiate a polynomial term. Generate as many versions as you need.</p>
+
+                <div data-practice
+                    data-generator="power-rule"
+                    data-title="Power Rule Practice"
+                    data-description="Choose an answer, check your work, and then generate a new version.">
+                    <noscript>This practice problem requires JavaScript to be enabled.</noscript>
+                </div>
+            </section>
+        </div>
+    </main>
+</body>
+
+</html>
