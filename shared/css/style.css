@@ -445,7 +445,29 @@ select:focus-visible {
   border-color: #6b7280;
 }
 
-.callout--note,
+.callout--note {
+  background: #fff1f2;
+  border-color: #9f1239;
+  border-left-width: 6px;
+  box-shadow: 0 3px 10px rgba(136, 19, 55, 0.12);
+}
+
+.callout--note .callout__title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding-bottom: var(--space-2);
+  color: #881337;
+  border-bottom: 1px solid #fecdd3;
+  font-size: 1.05rem;
+}
+
+.callout__icon {
+  flex: 0 0 auto;
+  font-size: 1.1em;
+  line-height: 1;
+}
+
 .answer {
   border-color: #94a3b8;
   background: #f8fafc;
@@ -565,6 +587,11 @@ li.example {
   margin: 0 0 var(--space-2);
 }
 
+.example__header {
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .example__label,
 .solution__label {
   font-style: italic;
@@ -595,6 +622,40 @@ li.example {
   background: #edf8ef;
   color: var(--color-brand-forest);
   font-weight: 700;
+  line-height: 1;
+}
+
+/* Reusable feature/requirement labels for example headers. */
+.example__tags {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.example__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.2rem 0.6rem;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.035em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.example__tag--technology {
+  color: #7c2d12;
+  background: #ffedd5;
+}
+
+.example__tag-icon {
+  font-size: 1.05em;
   line-height: 1;
 }
 
